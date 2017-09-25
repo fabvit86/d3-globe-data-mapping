@@ -1,4 +1,4 @@
-# d3-force-directed-graph
+# d3-globe-data-mapping
 FreeCodeCamp Project: Map Data Across the Globe using D3.js.
 
 ## Objectives:
@@ -11,4 +11,4 @@ FreeCodeCamp Project: Map Data Across the Globe using D3.js.
 
 Built with D3.js v4
 
-Live Demo [Here]()
+Live Demo coming soon...
