@@ -1,0 +1,14 @@
+{
+  "name": "globe-data-mapping",
+  "version": "1.0.0",
+  "description": "FreeCodeCamp Project: Show National Contiguity with a Force Directed Graph using D3.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Fabrizio Vitelli",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.5"
+  }
+}

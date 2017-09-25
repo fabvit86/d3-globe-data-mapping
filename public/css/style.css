@@ -1,0 +1,19 @@
+body, div.tooltip {
+	background-color: lightblue;
+}
+h1 {
+	text-align: center;
+	color: darkblue;
+	font-family: sans-serif;
+}
+#mainContainer {
+	text-align: center;
+}
+
+#footer {
+  color: black;
+  text-align: center;
+}
+#footer a{
+	color: blue;
+}
