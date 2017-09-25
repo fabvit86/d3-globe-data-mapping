@@ -1,19 +1,30 @@
 body, div.tooltip {
-	background-color: lightblue;
+	background-color: black;
 }
 h1 {
 	text-align: center;
-	color: darkblue;
+	color: ghostwhite;
 	font-family: sans-serif;
 }
 #mainContainer {
 	text-align: center;
 }
 
+/* SVG */
+#svgchart {
+	background-color: lightblue;
+}
+
+path {
+	stroke: gray;
+	stroke-width: 1.5px;
+	fill: lightyellow; /* country colors */
+}
+
 #footer {
-  color: black;
+  color: ghostwhite;
   text-align: center;
 }
 #footer a{
-	color: blue;
+	color: gold;
 }
