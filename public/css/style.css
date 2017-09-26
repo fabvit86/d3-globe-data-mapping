@@ -35,3 +35,27 @@ circle.meteorite {
 #footer a{
 	color: gold;
 }
+
+div.tooltip {
+  position: absolute;
+  text-align: left;
+  color: white;
+  min-height: 70px;
+  padding: 5px;
+  font: 12px sans-serif;
+  border: 1px solid white;
+  border-radius: 8px;
+  pointer-events: none; /* keep the mouseover when over the tooltip */
+}
+span.property {
+	font-weight: bold;
+	font-size: 10px;
+	color: red;
+}
+table td {
+	vertical-align: top;
+}
+
+circle.overed {
+	fill: red;
+}
