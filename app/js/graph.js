@@ -39,14 +39,22 @@ d3.json(topoUrl, function(error, data) {
   	if (error) throw error
   	const meteoArray = data.features
 
+  	// biggest and smallest meteorites:
+  	const maxMass = d3.max(meteoArray, d => +d.properties.mass)
+  	const minMass = Math.min(0, d3.min(meteoArray, d => +d.properties.mass))
+
+  	// scale meteorite radius proportionally to the square of its mass:
+  	const radius = d3.scaleSqrt().domain([minMass, maxMass]).range([1, 20])
+
   	// add a circle for every meteorite:
     gMapContainer.append("g")
 		.selectAll("circle")
 			.data(meteoArray)
 		.enter().append("circle")
+			.attr("class", "meteorite")
 			.attr("transform", d => "translate(" + path.centroid(d) + ")")
-    	.attr("r", 1.5)
-
+    	.attr("r", d => radius(d.properties.mass))
+    	// .attr("class", d => console.log(d.properties.mass))
   	// console.log(meteoArray[0].geometry.coordinates) //TEST
   	// console.log(projection(meteoArray[0].geometry.coordinates[0]))
 	})

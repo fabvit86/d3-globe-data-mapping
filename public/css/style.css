@@ -18,15 +18,14 @@ h1 {
 path.nation {
 	fill: lightyellow; /* country colors: */
 	stroke: gray; /* country borders: */
-	stroke-width: 1.5px;
+	stroke-width: 1px;
 }
 
-/*
-path.border {
-	stroke: gray;
-	stroke-width: 1.5px;
+circle.meteorite {
+	fill: orange;
+	stroke: black;
+  stroke-width: .5px;
 }
-*/
 
 #footer {
   color: ghostwhite;
