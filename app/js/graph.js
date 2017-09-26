@@ -3,10 +3,10 @@
 const chartWidth  = 1100,
 		  chartHeight = 700
 
+// projection and path:
 const projection = d3.geoMercator()
 	// center the projection:
-	.translate([chartWidth / 2, chartHeight / 2]) 
-
+	.translate([chartWidth / 2, chartHeight / 2])
 const path = d3.geoPath(projection)
 
 const svg = d3.select("#svgchart")
@@ -14,6 +14,12 @@ const svg = d3.select("#svgchart")
 							.attr("height", chartHeight)
 
 const gMapContainer = svg.append("g").attr("class", "map")
+
+// zoom behavior:
+const zoom = d3.zoom()
+	.scaleExtent([1, 8]) // restrict min and max zoom
+	.on("zoom", () => gMapContainer.attr("transform", d3.event.transform))
+svg.call(zoom) // call the zoom on the whole svg
 
 // tooltip div:
 const tooltip = d3.select('#mainContainer').append("div")
@@ -26,8 +32,7 @@ const meteoritesUrl = 'https://raw.githubusercontent.com/FreeCodeCamp/ProjectRef
 // load the topology using topojson:
 d3.json(topoUrl, (error, data) => {
   if (error) throw error
-	gMapContainer
-		.selectAll("path")
+	gMapContainer.selectAll("path")
 		.data(topojson.feature(data, data.objects.countries).features
 			// sort meteorites by mass, so smaller are drawn over bigger to avoid occlusion:
 			.sort((a, b) => b.properties.mass - a.properties.mass))
@@ -53,7 +58,7 @@ d3.json(topoUrl, (error, data) => {
 			.data(meteoArray)
 		.enter().append("circle")
 			.attr("class", "meteorite")
-			.attr("transform", d => "translate(" + path.centroid(d) + ")")
+			.attr("transform", d => { if(d.geometry) return "translate(" + path.centroid(d) + ")" })
     	.attr("r", d => radius(d.properties.mass))
     	.on("mouseover", function(d) {
     		const properties = d.properties
