@@ -19,23 +19,19 @@ const topoUrl = 'https://unpkg.com/world-atlas@1/world/110m.json'
 const meteoritesUrl = 'https://raw.githubusercontent.com/FreeCodeCamp/ProjectReferenceData/master/meteorite-strike-data.json'
 
 // load the topology using topojson:
-d3.json(topoUrl, function(error, data) {
+d3.json(topoUrl, (error, data) => {
   if (error) throw error
 	gMapContainer
 		.selectAll("path")
-		.data(topojson.feature(data, data.objects.countries).features)
+		.data(topojson.feature(data, data.objects.countries).features
+			// sort meteorites by mass, so smaller are drawn over bigger to avoid occlusion:
+			.sort((a, b) => b.properties.mass - a.properties.mass))
 		.enter().append("path")
 			.attr("class", "nation")
 			.attr("d", path)
-
-	// gMapContainer
-	// 	.append("path")
- //    .datum(topojson.mesh(data, data.objects.countries, (a, b) => a !== b))
- //    .attr("class", "border")
- //    .attr("d", path)
   
   // load the meteorites data:
-  d3.json(meteoritesUrl, function(error, data) {
+  d3.json(meteoritesUrl, (error, data) => {
   	if (error) throw error
   	const meteoArray = data.features
 
@@ -54,8 +50,5 @@ d3.json(topoUrl, function(error, data) {
 			.attr("class", "meteorite")
 			.attr("transform", d => "translate(" + path.centroid(d) + ")")
     	.attr("r", d => radius(d.properties.mass))
-    	// .attr("class", d => console.log(d.properties.mass))
-  	// console.log(meteoArray[0].geometry.coordinates) //TEST
-  	// console.log(projection(meteoArray[0].geometry.coordinates[0]))
 	})
 })

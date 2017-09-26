@@ -18,11 +18,12 @@ h1 {
 path.nation {
 	fill: lightyellow; /* country colors: */
 	stroke: gray; /* country borders: */
-	stroke-width: 1px;
+	stroke-width: .5px;
 }
 
 circle.meteorite {
 	fill: orange;
+	fill-opacity: .5;
 	stroke: black;
   stroke-width: .5px;
 }
