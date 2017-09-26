@@ -11,18 +11,43 @@ const path = d3.geoPath(projection)
 
 const svg = d3.select("#svgchart")
 							.attr("width", chartWidth)
-							.attr("height", chartHeight) 
+							.attr("height", chartHeight)
+
+const gMapContainer = svg.append("g").attr("class", "map")
+
+const topoUrl = 'https://unpkg.com/world-atlas@1/world/110m.json'
+const meteoritesUrl = 'https://raw.githubusercontent.com/FreeCodeCamp/ProjectReferenceData/master/meteorite-strike-data.json'
 
 // load the topology using topojson:
-const url = 'https://unpkg.com/world-atlas@1/world/110m.json'
-d3.json(url, function(error, data) {
+d3.json(topoUrl, function(error, data) {
   if (error) throw error
-	svg.append("g")
-		.attr("class", "map")
+	gMapContainer
 		.selectAll("path")
 		.data(topojson.feature(data, data.objects.countries).features)
-		.enter()
-		.append("path")
+		.enter().append("path")
+			.attr("class", "nation")
 			.attr("d", path)
-})
 
+	// gMapContainer
+	// 	.append("path")
+ //    .datum(topojson.mesh(data, data.objects.countries, (a, b) => a !== b))
+ //    .attr("class", "border")
+ //    .attr("d", path)
+  
+  // load the meteorites data:
+  d3.json(meteoritesUrl, function(error, data) {
+  	if (error) throw error
+  	const meteoArray = data.features
+
+  	// add a circle for every meteorite:
+    gMapContainer.append("g")
+		.selectAll("circle")
+			.data(meteoArray)
+		.enter().append("circle")
+			.attr("transform", d => "translate(" + path.centroid(d) + ")")
+    	.attr("r", 1.5)
+
+  	// console.log(meteoArray[0].geometry.coordinates) //TEST
+  	// console.log(projection(meteoArray[0].geometry.coordinates[0]))
+	})
+})

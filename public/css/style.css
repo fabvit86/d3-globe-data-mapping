@@ -15,11 +15,18 @@ h1 {
 	background-color: lightblue;
 }
 
-path {
+path.nation {
+	fill: lightyellow; /* country colors: */
+	stroke: gray; /* country borders: */
+	stroke-width: 1.5px;
+}
+
+/*
+path.border {
 	stroke: gray;
 	stroke-width: 1.5px;
-	fill: lightyellow; /* country colors */
 }
+*/
 
 #footer {
   color: ghostwhite;
