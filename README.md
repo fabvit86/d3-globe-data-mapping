@@ -11,4 +11,4 @@ FreeCodeCamp Project: Map Data Across the Globe using D3.js.
 
 Built with D3.js v4
 
-Live Demo coming soon...
+Live Demo [Here](https://codepen.io/fabvit86/full/XeMWNQ/)

@@ -70,10 +70,10 @@ d3.json(topoUrl, (error, data) => {
 	    											"<tr><td>Landing site: </td><td><span class='property'>" + properties.name + "</span></td></tr>" +
 	    											"<tr><td>Mass: </td><td><span class='property'>" + d3.format(",")(+properties.mass) + "</span></td></tr>" +
 	    											"<tr><td>Year: </td><td><span class='property'>" + new Date(properties.year).getFullYear() + "</span></td></tr>" +
-	    											"<tr><td>Class: </td><td><span class='property'>" + properties.recclass + "</span></td></tr>" + 
-	    											"<tr><td>Latitude: </td><td><span class='property'>" + properties.reclat + "</span></td></tr>" + 
-	    											"<tr><td>Longitude: </td><td><span class='property'>" + properties.reclong + "</span></td></tr>" +
-	    											"</tbody></table>"
+	    											"<tr><td>Class: </td><td><span class='property'>" + properties.recclass + "</span></td></tr>"
+	    	if (properties.reclat) tooltipContent += "<tr><td>Latitude: </td><td><span class='property'>" + properties.reclat + "</span></td></tr>" 
+	    	if (properties.reclong) tooltipContent += "<tr><td>Longitude: </td><td><span class='property'>" + properties.reclong + "</span></td></tr>"
+	    	tooltipContent += "</tbody></table>"
 	    	tooltip.html(tooltipContent)
 	      	.style("left", (d3.event.pageX - d3.select('.tooltip').node().offsetWidth / 2 - 5) + "px")
 	        .style("top", (d3.event.pageY - d3.select('.tooltip').node().offsetHeight) + "px");
